@@ -26,6 +26,12 @@ def api_requests(service, method, url, **kwargs):
     return response
 
 
-def get_schema(name_of_schema):
-    resources_path = os.path.join(os.path.join(os.path.dirname((os.path.abspath(__file__))), os.path.abspath('tests')), 'resources')
-    return os.path.join(resources_path, name_of_schema)
+def get_path_schema(name_of_schema):
+    resources_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'resources', name_of_schema)
+    return resources_path
+
+
+def response_schema(file_path):
+    with open(file_path, encoding='utf8') as file:
+        schema = json.loads(file.read())
+    return schema

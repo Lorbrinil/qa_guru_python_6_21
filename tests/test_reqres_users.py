@@ -1,11 +1,8 @@
 import datetime
 from conftest import api_requests
 
-base_url = 'https://reqres.in/'
-
 
 def test_create_user():
-
     response = api_requests(service='regres', method='post', url='/api/users',
                             json={"name": "student_name", "job": "student"})
 
@@ -80,10 +77,10 @@ def test_unsuccessful_login_with_unknown_user():
 
 def test_check_tokens():
     response_reg = api_requests(service='regres', method='post', url='/api/register',
-                            json={"email": "eve.holt@reqres.in", "password": "pistol123"})
+                                json={"email": "eve.holt@reqres.in", "password": "pistol123"})
     reg_users_token = response_reg.json()['token']
     response_login = api_requests(service='regres', method='post', url='/api/login',
-                            json={"email": "eve.holt@reqres.in", "password": "pistol123"})
+                                  json={"email": "eve.holt@reqres.in", "password": "pistol123"})
     login_users_token = response_login.json()['token']
 
     assert reg_users_token == login_users_token

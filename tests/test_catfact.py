@@ -1,7 +1,6 @@
-import json
 from jsonschema.validators import validate
 
-from conftest import api_requests, get_schema
+from conftest import api_requests, get_path_schema, response_schema
 
 
 def test_status_code_breeds():
@@ -11,8 +10,7 @@ def test_status_code_breeds():
 
 
 def test_schema_breeds():
-    with open(get_schema('schema_two_breeds.json')) as file:
-        schema = json.loads(file.read())
+    schema = response_schema(get_path_schema('schema_two_breeds.json'))
     response = api_requests(service='catfact', method='get', url='/breeds', params={"limit": 2})
 
     validate(instance=response.json(), schema=schema)
