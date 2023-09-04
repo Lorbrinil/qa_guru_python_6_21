@@ -27,5 +27,5 @@ def api_requests(service, method, url, **kwargs):
 
 
 def get_schema(name_of_schema):
-    resources_path = os.path.join(os.path.dirname((os.path.abspath(__file__))), os.path.abspath('resources'))
+    resources_path = os.path.join(os.path.join(os.path.dirname((os.path.abspath(__file__))), os.path.abspath('tests')), 'resources')
     return os.path.join(resources_path, name_of_schema)
